@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index,:show,:edit,:update] do
-    resource :relation, only: [:create, :destroy]
+    resource :relationship, only: [:create, :destroy]
     # resources :followers, controller: :relationship, only: [:create, :destroy]
     # resources :followeds, controller: :relationship, only: [:create, :destroy]
   end

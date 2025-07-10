@@ -21,7 +21,7 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  def followed_by(user)
+  def followed_by?(user)
     follower.exists?(follower_id: user.id)
   end
 end
