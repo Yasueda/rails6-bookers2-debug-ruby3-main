@@ -1,14 +1,4 @@
 class RelationshipsController < ApplicationController
-  def followers_show
-    user = User.find(params[:user_id])
-    @users = user.followed_user
-  end
-
-  def followeds_show
-    user = User.find(params[:user_id])
-    @users = user.follower_user
-  end
-
   def create
     user = User.find(params[:user_id])
     relationship = current_user.followed.new(follower_id: user.id)
