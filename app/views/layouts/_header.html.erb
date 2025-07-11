@@ -55,5 +55,7 @@
     </div>
   </nav>
 
-  <%= render 'layouts/search' %>
+  <% if user_signed_in? %>
+    <%= render '/searches/search' %>
+  <% end %>
 </header>

@@ -1,3 +1,12 @@
-<% if @table.nil? %>
-  No match!
-<% end %>
+<div class="container">
+  <h2>Search Result</h2>
+
+  <% if @searches.empty? %>
+    <h3><strong>No match!</strong></h3>
+  <% elsif @searches.name == User.name %>
+    <%= render 'users/index',users: @searches %>
+  <% elsif @searches.name == Book.name %>
+    <%= render 'books/index',books: @searches %>
+  <% end %>
+
+</div>

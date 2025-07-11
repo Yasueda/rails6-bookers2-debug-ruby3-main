@@ -1,9 +1,0 @@
-<% if user_signed_in? %>
-  <div class="container d-flex justify-content-center mt-2">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :table, options_for_select(['User', 'Book']) %>
-      <%= f.submit "Search", class: 'btn btn-sm btn-secondary' %>
-    <% end %>
-  </div>
-<% end %>
