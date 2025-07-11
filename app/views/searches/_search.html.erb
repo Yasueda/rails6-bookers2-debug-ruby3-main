@@ -4,7 +4,7 @@
       <%= f.text_field :word %>
       <%= f.select :table, options_for_select(['User', 'Book'], selected: params[:table]) %>
       <%= f.select :how, options_for_select([["完全一致","exact_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]], selected: params[:how]) %>
-      <%= f.submit "Search", class: 'btn btn-sm btn-secondary' %>
+      <%= f.submit "Search" %>
     <% end %>
   </div>
 <% end %>

@@ -2,7 +2,8 @@
   <h2>Search Result</h2>
 
   <% if @searches.empty? %>
-    <h3><strong>No match!</strong></h3>
+    <h3><strong>No match !</strong></h3>
+    <p>Please enter your search keyword.</p>
   <% elsif @searches.name == User.name %>
     <%= render 'users/index',users: @searches %>
   <% elsif @searches.name == Book.name %>
