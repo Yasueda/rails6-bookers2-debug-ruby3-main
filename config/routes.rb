@@ -16,10 +16,8 @@ Rails.application.routes.draw do
       get :followers
       get :followeds
     end
-    # get "followers" => "relationships#followers_show"
-    # get "followeds" => "relationships#followeds_show"
-    # resources :followers, controller: :relationship, only: [:create, :destroy]
-    # resources :followeds, controller: :relationship, only: [:create, :destroy]
   end
+
+  get 'search' => 'searches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
