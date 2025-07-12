@@ -1,2 +1,2 @@
-$(".book-comments-list").html("<%= escape_javascript(render partial: 'book_comments/book_comments', locals: {book: @book, book_comment: @book_comment}) %>");
+$(".book-comments").html("<%= escape_javascript(render partial: 'book_comments/book_comments', locals: {book: @book, book_comment: @book_comment}) %>");
 $(".new-book-comment")[0].reset();
