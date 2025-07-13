@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit]
 
   def show
+    # 個人ページの本を並び変えるならココ
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new

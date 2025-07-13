@@ -8,7 +8,9 @@ class BooksController < ApplicationController
   end
 
   def index
+    byebug
     @books = Book.all.populer_last(1.week.ago)
+    byebug
     @book = Book.new
   end
 

@@ -34,6 +34,12 @@ class ChatsController < ApplicationController
     @chat.destroy
   end
 
+  private
+
+  def chat_params
+    params.require(:chat).permit(:massege, :room_id)
+  end
+
   def mutual_follow
     partner = User.find(params[:id])
 

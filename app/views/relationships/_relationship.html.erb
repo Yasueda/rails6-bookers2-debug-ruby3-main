@@ -1,5 +1,8 @@
 <% if user.followed_by?(current_user) %>
+  <div class=""d-flex justify-content-between"">
   <%= link_to "フォローを外す", user_relationship_path(user), method: :delete, class: 'btn btn-sm btn-primary' %>
+  <%= link_to "Start Chat", chat_path(user.id), class: 'btn btn-sm btn-secondary' %>
+  </div>
 <% else %>
   <%= link_to "フォローをする", user_relationship_path(user), method: :post, class: 'btn btn-sm btn-success' %>
 <% end %>
