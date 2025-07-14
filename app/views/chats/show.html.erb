@@ -10,12 +10,13 @@
     <% @chats.each do |chat| %>
       <% if chat.user_id == current_user.id %>
         <div class="my-1 d-flex justify-content-end">
-          <span class="bg-success text-light px-2 rounded-lg border border-dark"><%= chat.message %></span>
-          <span><%= link_to "del", chat_path(chat), method: :delete, class: "btn btn-danger btn-sm ml-2", data: { confirm: '本当に消しますか？' } %></span>
+          <span class="bg-success text-light px-2 py-1 rounded-lg border border-dark" style="word-break: break-all;"><%= chat.message %></span>
+          <span class="d-flex align-items-end text-size"><%= link_to "✕", chat_path(chat), method: :delete, class: "btn btn-danger btn-sm ml-2 rounded-circle", data: { confirm: '本当に消しますか？' } %></span>
         </div>
       <% else %>
         <div class="my-1 d-flex justify-content-start">
-          <span class="bg-primary text-light px-2 rounded-lg border border-dark"><%= chat.message %></span>
+          <span><%= image_tag chat.user.get_profile_image, size: '34x34', class: "rounded-circle mr-2" %></span>
+          <span class="bg-info text-light px-2 py-1 rounded-lg border border-dark" style="word-break: break-all;"><%= chat.message %></span>
         </div>
       <% end %>
     <% end %>
@@ -24,7 +25,7 @@
   <div class="d-flex justify-content-end p-2 bg-dark">
     <%= form_with model: @chat do |f| %>
       <%= f.text_field :message %> 
-      <%= f.submit "send", class: "btn-sm btn-info" %>
+      <%= f.submit "send", class: "btn-sm btn-primary" %>
       <%= f.hidden_field :room_id, :value => @room.id %>
     <% end %>
   </div>

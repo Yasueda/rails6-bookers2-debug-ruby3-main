@@ -7,13 +7,15 @@ class BooksController < ApplicationController
     @book_comment = BookComment.new
 
     # 24時間内に同名アクセスしたかどうか
-    unless ShowCount.where('created_at >= ?', 1.day.ago).find_by(user_id: current_user.id, book_id: @book.id)
+    time = Time.zone.now
+    unless ShowCount.where('created_at >= ?', time.yesterday).find_by(user_id: current_user.id, book_id: @book.id)
       current_user.show_counts.create(book_id: @book.id)
     end
   end
 
   def index
-    @books = Book.all.populer_last(1.week.ago)
+    time = Time.zone.now
+    @books = Book.all.populer_last(time.last_week)
     @book = Book.new
   end
 
