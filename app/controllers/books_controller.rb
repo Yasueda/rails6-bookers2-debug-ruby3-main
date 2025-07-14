@@ -5,6 +5,11 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new
     @book_comment = BookComment.new
+
+    # 24時間内に同名アクセスしたかどうか
+    unless ShowCount.where('created_at >= ?', 1.day.ago).find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.show_counts.create(book_id: @book.id)
+    end
   end
 
   def index
