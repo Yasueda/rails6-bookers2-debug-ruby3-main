@@ -1,2 +1,21 @@
+<h2>Chat with <strong><%= @partner.name %></strong></h2>
+
+<div class="container" style="max-width: 540px;">
+  <% @chats.each do |chat| %>
+    <% if chat.use_id == current_user.id %>
+    <div>
+      <%= chat.message %>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-end">
+    <%= form_with model: @chat do |f| %>
+      <%= f.text_field :message %> 
+      <%= f.submit "send", class: "btn btn-sm btn-info" %>
+      <%= f.hidden_field :room_id, :value => @room.id %>
+    <% end %>
+  </div>
+</div>
+
 <h1>Chats#show</h1>
 <p>Find me in app/views/chats/show.html.erb</p>
