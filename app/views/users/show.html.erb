@@ -33,57 +33,11 @@
           </tr>
         </table>
 
-        <table class='table table-hover table-bordered'>
-          <thead class="thead-light">
-            <tr>
-              <th>今週の投稿数</th>
-              <th>前週の投稿数</th>
-              <th>前週比</th>
-            </tr>
-          </thead>
-          <tr>
-            <td><%= @books.thisweek_books.count %></td>
-            <td><%= @books.lastweek_books.count %></td>
-            <td>
-              <% if @books.lastweek_books.count == 0 %>
-                <span>先週の投稿はありません</span>
-              <% else %>
-                <span><%= (@books.thisweek_books.count.to_f / @books.lastweek_books.count.to_f * 100).round(1) %>%</span>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-
-        <h2 class="mt-3">前７日間の投稿数</h2>
-        <table class='table table-hover table-bordered'>
-          <thead class="thead-light">
-            <tr>
-              <th>６日前</th>
-              <th>５日前</th>
-              <th>４日前</th>
-              <th>３日前</th>
-              <th>２日前</th>
-              <th>１日前</th>
-              <th>今日</th>
-            </tr>
-          </thead>
-          <tr>
-            <td><%= @books.lastday_books(6).count %></td>
-            <td><%= @books.lastday_books(5).count %></td>
-            <td><%= @books.lastday_books(4).count %></td>
-            <td><%= @books.lastday_books(3).count %></td>
-            <td><%= @books.lastday_books(2).count %></td>
-            <td><%= @books.lastday_books(1).count %></td>
-            <td><%= @books.lastday_books(0).count %></td>
-          </tr>
-        </table>
-
-        <div class="search-datebooks">
-          <%= render 'users/datebooks', user: @user, datebooks: @datebooks %>
+        <div class="user-datebooks">
+          <%= render 'users/datebooks', user: @user, books: @books, datebooks: @datebooks %>
         </div>
 
       </div>
-
 
     </div>
   </div>
