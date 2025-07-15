@@ -78,16 +78,9 @@
           </tr>
         </table>
 
-        <div>
-          <%= form_with url: datebooks_user_path(@user.id), method: :get do |f| %>
-            <%= f.date_field :date, value: params[:date] %>
-            <%= f.submit "Search"%>
-          <% end %>
+        <div class="search-datebooks">
+          <%= render 'users/datebooks', user: @user, datebooks: @datebooks %>
         </div>
-
-        <% unless @datebooks.nil? %>
-          <span><%= params[:date].to_date.strftime("%Y年%m月%d日")%>の投稿数：<%= @datebooks.count %></span>
-        <% end %>
 
       </div>
 

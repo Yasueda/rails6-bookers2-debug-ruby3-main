@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     @book = Book.new
     @date = params[:date].to_date
     @datebooks = @books.date_books(@date)
-    render :show
   end
 
   def index
