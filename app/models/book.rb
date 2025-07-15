@@ -17,6 +17,9 @@ class Book < ApplicationRecord
   scope :thisweek_books, -> { where(created_at: Time.zone.now.prev_week(:saturday)..Time.zone.now) }
   scope :lastweek_books, -> { where(created_at: Time.zone.now.last_week.prev_week(:saturday)..Time.zone.now.prev_week(:friday).end_of_day) }
 
+  scope :lastday_books, -> (day) { where(created_at: Time.zone.now.ago(day.days).all_day) }
+  scope :date_books, -> (date) { where(created_at: date.all_day) }
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end

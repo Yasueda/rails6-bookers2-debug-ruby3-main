@@ -8,6 +8,15 @@ class UsersController < ApplicationController
     @book = Book.new
   end
 
+  def datebooks
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
+    @date = params[:date].to_date
+    @datebooks = @books.date_books(@date)
+    render :show
+  end
+
   def index
     @users = User.all
     @book = Book.new

@@ -53,7 +53,45 @@
             </td>
           </tr>
         </table>
+
+        <h2 class="mt-3">前７日間の投稿数</h2>
+        <table class='table table-hover table-bordered'>
+          <thead class="thead-light">
+            <tr>
+              <th>６日前</th>
+              <th>５日前</th>
+              <th>４日前</th>
+              <th>３日前</th>
+              <th>２日前</th>
+              <th>１日前</th>
+              <th>今日</th>
+            </tr>
+          </thead>
+          <tr>
+            <td><%= @books.lastday_books(6).count %></td>
+            <td><%= @books.lastday_books(5).count %></td>
+            <td><%= @books.lastday_books(4).count %></td>
+            <td><%= @books.lastday_books(3).count %></td>
+            <td><%= @books.lastday_books(2).count %></td>
+            <td><%= @books.lastday_books(1).count %></td>
+            <td><%= @books.lastday_books(0).count %></td>
+          </tr>
+        </table>
+
+        <div>
+          <%= form_with url: datebooks_user_path(@user.id), method: :get do |f| %>
+            <%= f.date_field :date, value: params[:date] %>
+            <%= f.submit "Search"%>
+          <% end %>
+        </div>
+
+        <% unless @datebooks.nil? %>
+          <span><%= params[:date].to_date.strftime("%Y年%m月%d日")%>の投稿数：<%= @datebooks.count %></span>
+        <% end %>
+
       </div>
+
+
     </div>
   </div>
 </div>

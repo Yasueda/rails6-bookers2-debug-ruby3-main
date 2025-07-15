@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     member do
       get :followers
       get :followeds
+
+      get :datebooks
     end
   end
 
