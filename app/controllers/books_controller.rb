@@ -14,9 +14,22 @@ class BooksController < ApplicationController
   end
 
   def index
-    time = Time.zone.now
-    @books = Book.all.populer_last(time.last_week)
+    # time = Time.zone.now
+    # @books = Book.all.populer_last(time.last_week)
     @book = Book.new
+
+    if params[:how_order] == "new_order"
+      @books = Book.new_order
+    elsif params[:how_order] == "old_order"
+      @books = Book.old_order
+    elsif params[:how_order] == "star_order"
+      @books = Book.star_order
+    elsif params[:how_order] == "favorite_order"
+      time = Time.zone.now
+      @books = Book.all.populer_last(time.last_week)
+    else
+      @books = Book.all
+    end
   end
 
   def create

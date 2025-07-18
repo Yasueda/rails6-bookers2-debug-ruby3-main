@@ -19,7 +19,9 @@
 
 
     <script>
+
       $(document).on('turbolinks:load', function() {
+        $('#post_raty').empty();
         let elem = document.querySelector('#post_raty');
         let opt = {
           starOn: "<%= asset_path('star-on.png') %>",

@@ -11,6 +11,9 @@ class Book < ApplicationRecord
   scope :populer_last, -> (time) {
     sort { |a, b| b.favorites.where('created_at >= ?', time).size <=> a.favorites.where('created_at >= ?', time).size }
   }
+  scope :new_order, -> { order(created_at: :desc) }
+  scope :old_order, -> { order(created_at: :asc) }
+  scope :star_order, -> { order(star: :desc) }
 
   scope :today_books, -> { where(created_at: Time.zone.now.all_day) }
   scope :yesterday_books, -> { where(created_at: Time.zone.now.yesterday.all_day) }
