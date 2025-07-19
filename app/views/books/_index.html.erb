@@ -4,6 +4,7 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Tag</th>
       <th>Star</th>
       <th>Good</th>
       <th>Comment</th>
@@ -19,6 +20,15 @@
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
+        <td>
+          <% book.book_tags.each do |book_tag| %>
+            <div>
+              <%= link_to '/' do %>
+                <%= book_tag.tag.name %>
+              <% end %>
+            </div>
+          <% end %>
+        </td>
         <td><%= render 'books/static_star', book: book %></td>
         <td class="favorite-<%= book.id %>" ><%= render 'favorites/favorite', book: book %></td>
         <td><%= book.book_comments.count %></td>

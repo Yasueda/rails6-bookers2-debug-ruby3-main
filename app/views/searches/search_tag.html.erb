@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Search Tag Result</h2>
+
+  <% if @searches.empty? %>
+    <h3><strong>No match !</strong></h3>
+    <p>Please enter your search keyword.</p>
+  <% elsif @searches.name == Book.name %>
+    <%= render 'books/index',books: @searches %>
+  <% end %>
+
+</div>

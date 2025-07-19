@@ -1,10 +1,15 @@
 <% if user_signed_in? %>
   <div class="container d-flex justify-content-center mt-2">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <%= form_with url: search_path, local: true, method: :get, class: "mx-2" do |f| %>
       <%= f.text_field :word %>
       <%= f.select :table, options_for_select(['User', 'Book'], selected: params[:table]) %>
       <%= f.select :how, options_for_select([["完全一致","exact_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]], selected: params[:how]) %>
       <%= f.submit "Search" %>
+    <% end %>
+
+    <%= form_with url:search_tag_path, local: true, method: :get, class: "mx-2" do |f| %>
+      <%= f.text_field :tag_word, style: "width:100px" %>
+      <%= f.submit "Search Tag" %>
     <% end %>
   </div>
 <% end %>

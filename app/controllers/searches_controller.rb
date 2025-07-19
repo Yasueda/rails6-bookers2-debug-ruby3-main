@@ -2,7 +2,6 @@ class SearchesController < ApplicationController
   def search
     if params[:word].empty?
       @searches = []
-
     else
       if params[:table] == User.name
         @searches = User.all
@@ -23,4 +22,18 @@ class SearchesController < ApplicationController
       end
     end
   end
+
+  def search_tag
+    if params[:tag_word].empty?
+      @searches = []
+    else
+      tag = Tag.find_by(name: params[:tag_word])
+      unless tag.nil?
+        @searches = tag.books
+      else
+        @searches = []
+      end
+    end
+  end
+
 end

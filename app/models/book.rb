@@ -5,6 +5,9 @@ class Book < ApplicationRecord
 
   has_many :show_counts, dependent: :destroy
 
+  has_many :book_tags, dependent: :destroy
+  has_many :tags, through: :book_tags
+
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
 

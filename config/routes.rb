@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   resources :chats, only: [:show, :create, :destroy]
 
   get 'search' => 'searches#search'
+  get 'search_tag' => 'searches#search_tag'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

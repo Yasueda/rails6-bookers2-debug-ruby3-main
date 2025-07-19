@@ -17,7 +17,6 @@ class BooksController < ApplicationController
     # time = Time.zone.now
     # @books = Book.all.populer_last(time.last_week)
     @book = Book.new
-
     if params[:how_order] == "new_order"
       @books = Book.new_order
     elsif params[:how_order] == "old_order"
@@ -36,7 +35,15 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @user = current_user
+
     if @book.save
+
+      @tags = params[:book][:tag].split(',')
+      @tags.each do |tag|
+        tag = Tag.find_or_create_by(name: tag)
+        tag.book_tags.create(book_id: @book.id)
+      end
+
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all
