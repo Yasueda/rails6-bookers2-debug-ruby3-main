@@ -40,7 +40,7 @@ class BooksController < ApplicationController
 
       @tags = params[:book][:tag].split(',')
       @tags.each do |tag|
-        tag = Tag.find_or_create_by(name: tag)
+        tag = Tag.find_or_create_by(name: tag.strip)
         tag.book_tags.create(book_id: @book.id)
       end
 

@@ -23,9 +23,7 @@
         <td>
           <% book.book_tags.each do |book_tag| %>
             <div>
-              <%= link_to '/' do %>
-                <%= book_tag.tag.name %>
-              <% end %>
+              <%= link_to book_tag.tag.name, search_tag_path(tag_word: book_tag.tag.name) %>
             </div>
           <% end %>
         </td>
