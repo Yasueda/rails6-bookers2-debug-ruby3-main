@@ -1,7 +1,6 @@
 <div id="star-<%= book.id %>"></div>
 
 <script>
-
   $(document).on('turbolinks:load', function() {
     $('#star-<%= book.id %>').empty();
     let elem = document.querySelector('#star-<%= book.id %>');

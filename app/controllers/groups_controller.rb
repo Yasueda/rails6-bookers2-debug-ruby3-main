@@ -58,6 +58,7 @@ class GroupsController < ApplicationController
   end
 
   def notice
+    # Notice an Event用の仮リンクとアクション
   end
 
   private
