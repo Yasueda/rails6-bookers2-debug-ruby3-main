@@ -37,10 +37,10 @@ class BooksController < ApplicationController
     @user = current_user
 
     if @book.save
-
+      # タグの作成
       @tags = params[:book][:tag].split(',')
       @tags.each do |tag|
-        tag = Tag.find_or_create_by(name: tag.strip)
+        tag = Tag.find_or_create_by(name: tag.gsub(/　/," ").strip)
         tag.book_tags.create(book_id: @book.id)
       end
 

@@ -9,7 +9,18 @@
     </div>
 
     <div class='col-md-8 offset-md-1'>
-      <h2>Users</h2>
+
+      <div class="row mb-2">
+        <div class="col">
+          <h2 class="mb-0">Users</h2>
+        </div>
+        <div class="col px-3 d-flex justify-content-end align-items-end">
+          <%= link_to 'Group Index', groups_path %>
+          <span class="mx-1">|</span>
+          <%= link_to 'Group Create', groups_new_path %>
+        </div>
+      </div>
+
       <%= render 'index',users: @users %>
     </div>
   </div>

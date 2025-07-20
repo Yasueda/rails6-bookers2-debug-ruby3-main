@@ -1,0 +1,31 @@
+<table class='table'>
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th>intro</th>
+      <th>member</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% groups.each do |group| %>
+      <tr>
+        <td><%= image_tag group.get_group_image, size: '50x50' %></td>
+        <td><%= group.name %></td>
+        <td><%= group.introduction %></td>
+        <td>メンバー数：<%= group.users.count %></td>
+        <% if group.owner_id == current_user.id %>
+          <td>
+            <%= link_to "Edit", edit_group_path(group), class: 'btn btn-sm btn-success' %>
+          </td>
+        <% else %>
+          <td>
+            <%= link_to "Join this group", group_path(group), class: 'btn btn-sm btn-primary' %>
+          </td>
+        <% end %>
+        <td><%= link_to "Show", group_path(group) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

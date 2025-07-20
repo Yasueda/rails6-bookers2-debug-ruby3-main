@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_07_19_042246) do
+ActiveRecord::Schema.define(version: 2025_07_20_044050) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(version: 2025_07_19_042246) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.text "introduction"
+    t.integer "owner_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -110,6 +118,15 @@ ActiveRecord::Schema.define(version: 2025_07_19_042246) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id"
+    t.index ["user_id"], name: "index_user_groups_on_user_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -143,6 +160,8 @@ ActiveRecord::Schema.define(version: 2025_07_19_042246) do
   add_foreign_key "chats", "users"
   add_foreign_key "show_counts", "books"
   add_foreign_key "show_counts", "users"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end
