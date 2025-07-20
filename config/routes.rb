@@ -23,8 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :chats, only: [:show, :create, :destroy]
-  get 'groups/new' => 'groups#new'
-  resources :groups, only: [:index, :show, :edit, :update, :create, :destroy]
-
-
+  resources :groups, only: [:new, :index, :show, :edit, :update, :create, :destroy] do
+    member do
+      get :join
+      get :leave
+      get :notice
+    end
+  end
 end

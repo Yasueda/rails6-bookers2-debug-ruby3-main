@@ -12,7 +12,7 @@
     <% groups.each do |group| %>
       <tr>
         <td><%= image_tag group.get_group_image, size: '50x50' %></td>
-        <td><%= group.name %></td>
+        <td><%= link_to group.name, group_path(group) %></td>
         <td><%= group.introduction %></td>
         <td>メンバー数：<%= group.users.count %></td>
         <% if group.owner_id == current_user.id %>
@@ -20,11 +20,8 @@
             <%= link_to "Edit", edit_group_path(group), class: 'btn btn-sm btn-success' %>
           </td>
         <% else %>
-          <td>
-            <%= link_to "Join this group", group_path(group), class: 'btn btn-sm btn-primary' %>
-          </td>
+          <td></td>
         <% end %>
-        <td><%= link_to "Show", group_path(group) %></td>
       </tr>
     <% end %>
   </tbody>

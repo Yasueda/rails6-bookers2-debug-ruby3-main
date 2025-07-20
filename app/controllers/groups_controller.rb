@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :ensure_correct_user, only: [:update, :edit, :destroy]
+  before_action :ensure_correct_user, only: [:update, :edit, :destroy, :notice]
   def index
     @groups = Group.all
     @book = Book.new
@@ -23,7 +23,9 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_path(@group), notice: "You have updated group successfully."
     else
-      render :edit
+      @groups = Group.all
+      @book = Book.new
+      render :index
     end
   end
 
@@ -35,11 +37,36 @@ class GroupsController < ApplicationController
       redirect_to group_path(@group), notice: "You have created group successfully."
     else
       @groupes = Group.all
+      @book = Book.new
       render 'index'
     end
   end
 
   def destroy
+  end
+
+  def join
+    @book = Book.new
+    @group = Group.find(params[:id])
+    user_group = UserGroup.find_by(user_id: current_user.id, group_id: @group.id)
+    if user_group.nil?
+      UserGroup.create(user_id: current_user.id, group_id: @group.id)
+      redirect_to group_path(@group)
+    else
+      render :index
+    end
+  end
+
+  def leave
+    @group = Group.find(params[:id])
+    user_group = UserGroup.find_by(user_id: current_user.id, group_id: @group.id)
+    user_group.destroy
+
+    @book = Book.new
+    redirect_to group_path(@group)
+  end
+
+  def notice
   end
 
   private
