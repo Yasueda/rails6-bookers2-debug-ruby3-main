@@ -23,9 +23,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_path(@group), notice: "You have updated group successfully."
     else
-      @groups = Group.all
-      @book = Book.new
-      render :index
+      redirect_to groups_path
     end
   end
 
@@ -36,33 +34,26 @@ class GroupsController < ApplicationController
       current_user.user_groups.create(group_id: @group.id)
       redirect_to group_path(@group), notice: "You have created group successfully."
     else
-      @groupes = Group.all
-      @book = Book.new
-      render 'index'
+      render :new
     end
   end
 
   def destroy
+    group = Group.find(params[:id])
+    group.destroy
+    redirect_to groups_path
   end
 
   def join
-    @book = Book.new
     @group = Group.find(params[:id])
-    user_group = UserGroup.find_by(user_id: current_user.id, group_id: @group.id)
-    if user_group.nil?
-      UserGroup.create(user_id: current_user.id, group_id: @group.id)
-      redirect_to group_path(@group)
-    else
-      render :index
-    end
+    UserGroup.create(user_id: current_user.id, group_id: @group.id)
+    redirect_to group_path(@group)
   end
 
   def leave
     @group = Group.find(params[:id])
     user_group = UserGroup.find_by(user_id: current_user.id, group_id: @group.id)
     user_group.destroy
-
-    @book = Book.new
     redirect_to group_path(@group)
   end
 

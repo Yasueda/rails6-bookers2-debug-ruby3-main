@@ -37,11 +37,7 @@
             </td>
           <% else %>
             <td>
-              <% if @group.joined_by?(current_user) %>
-                <%= link_to "Leave this group", leave_group_path(@group), class: 'btn btn-sm btn-danger' %>
-              <% else %>
-                <%= link_to "Join this group", join_group_path(@group), class: 'btn btn-sm btn-primary' %>
-              <% end %>
+              <%= render 'groups/join', group: @group %>
             </td>
           <% end %>
         </tr>
