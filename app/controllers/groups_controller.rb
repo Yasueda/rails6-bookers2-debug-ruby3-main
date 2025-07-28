@@ -57,8 +57,15 @@ class GroupsController < ApplicationController
     redirect_to group_path(@group)
   end
 
-  def notice
-    # Notice an Event用の仮リンクとアクション
+  def new_mail
+    @group = Group.find(params[:id])
+  end
+  
+  def send_mail
+    @group = Group.find(params[:id])
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    ContactMailer.send_mailer(@mail_title, @mail_content, @group).deliver_now
   end
 
   private

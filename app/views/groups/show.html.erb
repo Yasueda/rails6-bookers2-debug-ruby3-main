@@ -45,7 +45,7 @@
       <span><strong>メンバー（名前順）</strong></span>
       <span>
         <% if @group.owner_id == current_user.id %>
-          <%= link_to "Notice an Event", notice_group_path(@group), class: "btn btn-sm btn-info" %>
+          <%= link_to "Notice an Event", new_mail_group_path(@group), class: "btn btn-sm btn-info" %>
         <% end %>
       </span>
       </div>

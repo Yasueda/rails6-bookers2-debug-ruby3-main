@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   resources :groups, only: [:new, :index, :show, :edit, :update, :create, :destroy] do
     member do
       get :join
-      get :leave
-      get :notice
+      get :new_mail
+      get :send_mail
     end
   end
 end
