@@ -14,7 +14,14 @@
 
         <div class="col px-3 d-flex justify-content-end">
           <%= form_with url: books_path, method: :get, class: "py-2 text-right" do |f| %>
-            <%= f.select :how_order, options_for_select([["New","new_order"], ["Old","old_order"], ["Star","star_order"], ["Good","favorite_order"]], selected: params[:how_order]) %>
+            <%= f.select :how_order, options_for_select([
+              ["New","new_order"],
+              ["Old","old_order"],
+              ["Star","star_order"],
+              ["Good","favorite_order"],
+              ["Title_asc","asc_title_order"],
+              ["Title_desc","desc_title_order"]
+              ],selected: params[:how_order]) %>
             <%= f.submit "Order" %>
           <% end %>
         </div>

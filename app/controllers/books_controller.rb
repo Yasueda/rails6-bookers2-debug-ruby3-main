@@ -17,18 +17,26 @@ class BooksController < ApplicationController
     # time = Time.zone.now
     # @books = Book.all.populer_last(time.last_week)
     @book = Book.new
-    if params[:how_order] == "new_order"
-      @books = Book.new_order
-    elsif params[:how_order] == "old_order"
-      @books = Book.old_order
-    elsif params[:how_order] == "star_order"
-      @books = Book.star_order
-    elsif params[:how_order] == "favorite_order"
-      time = Time.zone.now
-      @books = Book.all.populer_last(time.last_week)
-    else
-      @books = Book.all
+
+    @books = Book.all
+    unless params[:how_order].nil?
+      if @books.respond_to? params[:how_order]
+        @books = @books.send(params[:how_order])
+      end
     end
+
+    # if params[:how_order] == "new_order"
+    #   @books = Book.new_order
+    # elsif params[:how_order] == "old_order"
+    #   @books = Book.old_order
+    # elsif params[:how_order] == "star_order"
+    #   @books = Book.star_order
+    # elsif params[:how_order] == "favorite_order"
+    #   time = Time.zone.now
+    #   @books = Book.all.populer_last(time.last_week)
+    # else
+    #   @books = Book.all
+    # end
   end
 
   def create
