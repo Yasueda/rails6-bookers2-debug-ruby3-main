@@ -34,4 +34,7 @@ Rails.application.routes.draw do
       get :send_mail
     end
   end
+
+  resources :notifications, only: [:update]
+
 end
