@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     # 個人ページの本を並び変えるならココ
@@ -53,7 +54,14 @@ class UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "this user cannot access"
+    end
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user), notice: "Guest user cannot access"
     end
   end
 end
